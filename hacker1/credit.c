@@ -65,7 +65,8 @@ int main (void)
         
     return 0; 
 }
-/**
+
+/*
  * Function to determine card type.
  */
 int card_type(char cc_num[], int cc_len)
@@ -82,7 +83,8 @@ int card_type(char cc_num[], int cc_len)
     else
         return 1; 
 }
-/**
+
+/*
  * luhn test function
  */
 int luhn(char cc_num[], int cc_len)
