@@ -19,6 +19,14 @@ Nine problem sets are assigned during the year. Each is due via electronic submi
 
 In order to accommodate students with different backgrounds, some problem sets are released in two editions: a standard edition intended for most students and a "Hacker Edition" intended for some students. Both editions essentially cover the same material. But the Hacker Edition typically presents that material from a more technical angle and poses more sophisticated questions. 
 
-* Problem Set 0: Scratch, Problem Set 1: C, Problem Set 2: Crypto, Problem Set 3: Game of Fifteen, Problem Set 4: Breakout, Problem Set 5: Forensics, Problem Set 6: Mispellings, Problem Set 7: C$50 Finance Problem Set 8: CS50 Shuttle
+* Problem Set 0: Scratch
+* Problem Set 1: C
+* Problem Set 2: Crypto
+* Problem Set 3: Game of Fifteen
+* Problem Set 4: Breakout
+* Problem Set 5: Forensics
+* Problem Set 6: Mispellings
+* Problem Set 7: C$50 Finance 
+* Problem Set 8: CS50 Shuttle
 
 #### Final Project ####
