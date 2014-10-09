@@ -1,10 +1,18 @@
-/*******************************************************************************
- * Assignment:   CS50, pset2,Hail, Caesar!
- * FILE:         caesar.c
+/***
+ * caesar.c (c) by Victor Barriga
  * 
- * Author:       Victor Barriga
- * Email:        victorbarriga@live.com
- *  
+ * caesar.c is licensed under a
+ * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+ * 
+ * You should have received a copy of the license along with this
+ * work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/3.0/>.
+ * 
+ * caesar.c 
+ * Computer Science 50
+ * Problem Set 2 
+ * 
+ * Usage: ./caesar <key>
+ * 
  * The program demonstrates the use of a cryptography by implementing a Caesar 
  * Cipher, which enctypts messages by rotating each letter by k positions, 
  * wrapping aroung from Z to A as needed. If p is some plaintext (unencrypted), 
