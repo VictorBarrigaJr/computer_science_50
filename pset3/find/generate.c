@@ -7,7 +7,6 @@
  * You should have received a copy of the license along with this
  * work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/3.0/>.
  * 
- * generate.c 
  * Computer Science 50
  * Problem Set 3 - generate
  * generate.c
