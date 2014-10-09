@@ -1,11 +1,19 @@
-/*******************************************************************************
- * Assignment:   CS50, pset2,Parlez-vous fancais?
- * FILE:         vigenere.c
+/***
+ * vigenere.c (c) by Victor Barriga
  * 
- * Author:       Victor Barriga
- * Email:        victorbarriga@live.com
+ * vigenere.c is licensed under a
+ * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
  * 
- * The program demonstrates the use of a cryptography by implementing Vigenere's 
+ * You should have received a copy of the license along with this
+ * work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/3.0/>.
+ * 
+ * vigenere.c 
+ * Computer Science 50
+ * Problem Set 2 
+ * 
+ * Usage: ./vigenere <key>
+
+ * The program demonstrates the use of a cryptography by implementing Vigeneres 
  * Cipher, which enctypts messages by rotating each letter by Kith positions, 
  * wrapping aroung from Z to A as needed. If p is some plaintext (unencrypted),
  * p is the ith character in p, and k is the keyword (non-negatice integer), 
@@ -31,7 +39,7 @@
 #include <stdbool.h>
 #include <cs50.h>
 
-/**
+/***
  * Function prototypes
  */
 bool is_alphabetical (char string[]);
@@ -63,7 +71,7 @@ int main (int argc, char *argv[])
 }
 
 /******************************************************************************/
-/**
+/***
  * Function to verify if arg[] is alphabetical, returns bool.
  */
 bool is_alphabetical (char string[])
@@ -80,7 +88,7 @@ bool is_alphabetical (char string[])
     
     return is_alpha_flag;
 }
-/**
+/***
  * Function to count the number of elements in a given array.
  */
 int string_length (char string[])
@@ -91,7 +99,7 @@ int string_length (char string[])
         ++count;
     return count;
 }
-/**
+/***
  * Function to copy and paste elements of an array into another array. 
  */
 void copy_and_paste (char copy[], char paste[])
@@ -101,7 +109,7 @@ void copy_and_paste (char copy[], char paste[])
         paste[i] = copy[i];
     paste[i] = '\0';
 }
-/**
+/***
  * Function to receive plain text from the user and assigns each char into the
  * argument array.
  */
@@ -120,7 +128,7 @@ void read_line (char buffer[])
     
     buffer[i -1] = '\0';
 }
-/**
+/***
  * Function to get key based on each char of the keyword.
  */
 int get_key (char k)
@@ -133,7 +141,7 @@ int get_key (char k)
     else
         return 0; 
 }
-/**
+/***
  * Function to test character caase and switch tto appropriate case based on key
  */
 char character_case (char c, int key)
@@ -153,7 +161,7 @@ char character_case (char c, int key)
     else
         return c;
 }
-/**
+/***
  * Function to iterate through text & rotate letters by key
  */
 void vigenere (char string[], char keyword[])
