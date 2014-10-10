@@ -1,19 +1,19 @@
-0.  TODO
-1.  TODO
-2.  TODO
-3.  TODO
-4.  TODO
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
-11. TODO
-12. TODO
-13. TODO
-14. TODO
-15. TODO
-16. TODO
-17. TODO
-18. TODO
+0.  How many differnt colors does each format support?
+1.  Which of these formats supports animation?
+2.  What's the difference between lossy and lossless compression?
+3.  Which of these formats is lossy-compressed? 
+4.  What happens, techinacally speaking, when a file si deleted on a FATfile system?
+5.  What can someone like you do to ensure (with hight probability) that files you delete canno be recovered?
+6.  What's stdint.h?
+7.  What's the point of using unit_8, unit32_t, int32_t, and unit16_t in program?
+8.  How many bytes is a BYTE, a LONG, and a WORD, respectively? (Assume a 32-bit architecture like the CS50 Appliance.)
+9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers").
+10. What's the difference between bfSize and biSize?
+11. What does it mean if biHeight is negative?
+12. What field in BITMAPINFOHEADER specifies the BMP's color depth (i.e. bits per pixel)?
+13. Why might fopwn return NULL in copy.c:37?
+14. Why is the third argument to fread always 1 in our code?
+15. What value does copy.c:70 assign padding if bi.Width is 3?
+16. What does fseek do?
+17. What is SEEK_CUR?
+18. Whodunit?
