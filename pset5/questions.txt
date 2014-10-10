@@ -1,8 +1,8 @@
-0.  How many differnt colors does each format support?
-1.  Which of these formats supports animation?
-2.  What's the difference between lossy and lossless compression?
-3.  Which of these formats is lossy-compressed? 
-4.  What happens, techinacally speaking, when a file si deleted on a FATfile system?
+0.  How many differnt colors does each format support?  In their respective standard formats: Windows bitmap (BMP) depends on the number of bits per pixels used in the file (1, 2, 4, 8, 16 24, 32), but the 32-bits per pixel format, which represents 2^32 = 4,294,967,296 distict colors per pixel, in a lossless format; Joint Photographic Expert Group (JPEG) file format support 24-bits, which represents 3^24 = 16,777,216 distinct colors per pixel, in a lossy format.
+1.  Which of these formats supports animation? Neither BMP file format or JPEG file format support animation.
+2.  What's the difference between lossy and lossless compression? Any type of media file such as music, images or video can be stored in lossy or lossless formats. The files in lossy format usually consume a lot less storage space than files in lossless formats. The differnce between the two formats is storage space, quality of files, and better support for lossy formats. In the case of image management: Images stored in Windows bitmat (BMP) do not suffer from appreciable loss in quality even after prolonged storage. In Joint Photographic Experts Group (JPEG), however keeps loosing quality even after plolonged storage, and keeps loosing quality with after each save, or edit. This loss is not recoverable. The storage space used by JPEG is incredibly small compared to the size of BMP files, which occupy huge amounts of space even for small files.
+3.  Which of these formats is lossy-compressed? JPEG file format is lossy-compressed. 
+4.  What happens, techinacally speaking, when a file is deleted on a FAT file system?
 5.  What can someone like you do to ensure (with hight probability) that files you delete canno be recovered?
 6.  What's stdint.h?
 7.  What's the point of using unit_8, unit32_t, int32_t, and unit16_t in program?
