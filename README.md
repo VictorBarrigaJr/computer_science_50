@@ -3,7 +3,7 @@
 ### About ###
 
 Repository holds my solutions to the CS50 Problem Sets, an Introduction to Computer Science I, Harvard College. 
-If you are enrolled in the course, and elect to view my solutions please keep in mind the course's policy on [academic honesty]( https://x.cs50.net/2014/syllabus).  
+If you are enrolled in the course, and elect to view my solutions please keep in mind the course's policy on [academic honesty]( https://x.cs50.net/2014/syllabus).
 
 #### CS50 Course Description:####
 
