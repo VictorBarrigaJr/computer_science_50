@@ -74,10 +74,14 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  of colors in the bitmap is determined by biBitCount
 13. Why might fopen return NULL in copy.c:37? The function fopen, in copy.c 
  line:37, will return NULL if an error occured while attempting to write to the 
- file, which usually signifying a memory fault: the operating system is out of 
+ file, which usually signifies a memory fault: the operating system is out of 
  memory, or the program attempted to write into a part of memory that it does 
  not have access to. 
-14. Why is the third argument to fread always 1 in our code?
+14. Why is the third argument to fread always 1 in our code? In the third 
+ argument(nmemb) of fread, is the number of elements, each one with a size of
+ bytes. So in the case, there is a 1 as input, the function will attempt to 
+ read 1 data element, the size of the BITMAPHEADER, from the file bi. In this 
+ case, it is reading 1 structure.
 15. What value does copy.c:70 assign padding if bi.Width is 3?
 16. What does fseek do?
 17. What is SEEK_CUR?
