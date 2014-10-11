@@ -70,8 +70,13 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  corner. If it is negative, the bitmap is top-down, and its origin is the 
  upper-left corner. It also cannot be compressed.  
 12. What field in BITMAPINFOHEADER specifies the BMP's color depth (i.e. bits 
- per pixel)?
-13. Why might fopwn return NULL in copy.c:37?
+ per pixel)? The number of bits that define each pixel and the maximum number 
+ of colors in the bitmap is determined by biBitCount
+13. Why might fopen return NULL in copy.c:37? The function fopen, in copy.c 
+ line:37, will return NULL if an error occured while attempting to write to the 
+ file, which usually signifying a memory fault: the operating system is out of 
+ memory, or the program attempted to write into a part of memory that it does 
+ not have access to. 
 14. Why is the third argument to fread always 1 in our code?
 15. What value does copy.c:70 assign padding if bi.Width is 3?
 16. What does fseek do?
