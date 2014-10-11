@@ -68,7 +68,7 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  the height of the bitmap, in pixels. It provides this information in two ways. 
  If it is positive,the bitmap is bottom-up, and its origin is the lower-left 
  corner. If it is negative, the bitmap is top-down, and its origin is the 
- upper-left corner.  
+ upper-left corner. It also cannot be compressed.  
 12. What field in BITMAPINFOHEADER specifies the BMP's color depth (i.e. bits 
  per pixel)?
 13. Why might fopwn return NULL in copy.c:37?
