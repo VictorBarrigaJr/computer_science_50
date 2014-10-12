@@ -89,5 +89,6 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  is the number of bytes to offsent from source. So, it basically sets the file 
  (intptr) position indicator to the offset (padding) amount, using the source 
  location (SEEK_CUR).
-17. What is SEEK_CUR? 
+17. What is SEEK_CUR? SEEK_CUR is an argument within the function fseek, which 
+ supplies the origin, which is the current position of the file pointer.
 18. Whodunit?
