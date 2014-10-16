@@ -1,12 +1,11 @@
 /***
- * CS50 Study, data structures, linked lists
- * append.c
+ * CS50 Study, data structures, stacks
+ * push.c
  *
  * Victor Barriga
  * victorbarriga@live.com
  *
- * function that appends a new node containing int i at the end of a singly 
- * linked list.
+ * function that implements a push function for this stack
  *
  * jharvard@run.cs50.net (~): ./a.out
  * Pushing 10 strings onto the stack...
