@@ -69,7 +69,7 @@ void insert_sorted(int i)
     node *cur;
     for (cur = head; cur != NULL; cur = cur->next) 
     {
-        //break if we wing a value larger than i
+        //break if we find a value larger than i
         if (cur->n > i)
         {
             break;
