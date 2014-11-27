@@ -36,12 +36,12 @@
  and sooner or later, they are written over.  
 5.  What can someone like you do to ensure (with hight probability) that files 
  you delete cannot be recovered? Remove the drive, shred it, burn it, and then 
- throw then sprinkel the ashes over the ocean! Actually, one can ensure that 
- files cannot be recovered by sanitizing the data (overwriting the data). One 
- way to overwrite a hard disk is to fill every addressable block with ASCII NUL 
- bytes (zeroes). On read-back, the drive will report that each of these blocks 
- is filled with NUL's. Overwiting a disk with a few random passes will 
- sufficiently sanitize it.    
+ sprinkle the ashes over the ocean! Actually, one can ensure that files cannot 
+ be recovered by sanitizing the data (overwriting the data). One way to 
+ overwrite a hard disk is to fill every addressable block with ASCII NUL bytes 
+ (zeroes). On read-back, the drive will report that each of these blocks is 
+ filled with NUL's. Overwiting a disk with a few random passes will sufficiently 
+ sanitize it.    
 6.  What's stdint.h? It is a header file in the C standard library. It helps 
  write more portable code by providing a set of typedefs that specify 
  exact-width (having an exact specified number of bits) integer types, and also 
