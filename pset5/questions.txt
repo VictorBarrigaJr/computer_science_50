@@ -3,9 +3,14 @@
  used in the file (1, 2, 4, 8, 16 24, 32), but the 32-bits per pixel format, 
  which represents 2^32 = 4,294,967,296 distict colors per pixel, in a lossless 
  format; Joint Photographic Expert Group (JPEG) file format support 24-bits, 
- which represents 3^24 = 16,777,216 distinct colors per pixel, in a lossy format.
-1.  Which of these formats supports animation? Neither BMP file format or JPEG 
- file format support animation.
+ which represents 3^24 = 16,777,216 distinct colors per pixel, in a lossy 
+ format. Graphics Interchange Format (GIF) has a maximum of 8 bits per pixel, 
+ which means 256 colors per pixel. Portable Network Graphics (PNG) has a maximum
+ of 32 bits (24 bit for color and 8 bit for alpha/ transparancy), which 
+ represents a 2^24 colors per pixel. 
+1.  Which of these formats supports animation? Neither BMP file format, JPEG, or 
+ PNG file formats support animation. GIF is the only one that does support 
+ animation. 
 2.  What's the difference between lossy and lossless compression? Any type of 
  media file such as music, images or video can be stored in lossy or lossless 
  formats. The files in lossy format usually consume a lot less storage space 
@@ -51,10 +56,11 @@
  program? Those structures (unit_8, unit32_t, int32_t, and unit16), represent
  exact-width interger types (intN_t and unitN_t)in the stdint.h file. They 
  represent exactly N bits with no padding bits.    
-8.  How many bytes is a BYTE, a LONG, and a WORD, respectively? (Assume a 32-bit
- architecture like the CS50 Appliance.) The byte is a unit of digital 
+8.  How many bytes is a BYTE, a DWORDa LONG, and a WORD, respectively? (Assume a
+ 32-bit architecture like the CS50 Appliance.) The byte is a unit of digital 
  information commonly consisting of eight bits. A BYTE is equal to one BYTE, 8 
- bits. A LONG is 4 BYTES, 32 bits. A WORD is 4 BYTES, 32 bits.  
+ bits. A DWORD is 32 bits. A LONG is 4 BYTES, 32 bits. A WORD is 4 BYTES, 32 
+ bits.  
 9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP
  file be? (Leading bytes used to identify file formats (with high probability) 
  are generally called "magic numbers"). The header field used to identify a BMP 
