@@ -92,6 +92,7 @@ int main(int argc, char* argv[])
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             // define filter color
+            RGBTRIPLE filter;
             filter.rgbtBlue = 0x00;
             filter.rgbtGreen = 0x00;
             filter.rgbtRed = 0x00;
