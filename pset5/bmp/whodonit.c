@@ -96,20 +96,12 @@ int main(int argc, char* argv[])
             filter.rgbtGreen = 0x00;
             filter.rgbtBlue = 0x00;
             filter.rgbtRed = 0x00;
-
-            // filters out Red and White colors
-            if (triple.rgbtGreen == 0x00 && triple.rgbtBlue == 0x00 && 
-                triple.rgbtRed == 0xff)
+            
+            if (triple.rgbtRed != 255)
             {
                 triple = filter;
             }
-
-            if (triple.rgbtGreen == 0xff && triple.rgbtGreen == 0xff &&
-                triple.rgbtRed == 0xff)
-            {
-                triple = filter;
-            }
-
+                       
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
         }
