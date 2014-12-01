@@ -1,20 +1,22 @@
 /*******************************************************************************
- * whodonit.c (c) by Victor Barriga
+ * resize.c (c) by Victor Barriga
  * 
- * whodonit.c is licensed under a
+ * resize.c is licensed under a
  * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
  * 
  * You should have received a copy of the license along with this
  * work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/3.0/>.
  * 
- * whodonit.c 
+ * resize.c 
  * Computer Science 50
  * Problem Set 5 - Forensics
  *
- * Usage: ./whodonit clue.bmp verdict.bmp
+ * Usage: ./resize n infile outfile
  *
- * Reveals Mr. Broddy's drawing by creating a modified copy of a BMP pixel by 
- * pixel.
+ * Program resizes a 24-bit uncompressed BMP's by a factor of n.  The program 
+ * accepts three command-line arguments, whreby n must be a positive interger 
+ * less than or equal to 100, the second is the file to be resized, and the 
+ * third the name of the rezised version to be written. 
  **/
        
 #include <stdio.h>
