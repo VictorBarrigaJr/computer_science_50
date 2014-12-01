@@ -97,4 +97,4 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  location (SEEK_CUR).
 17. What is SEEK_CUR? SEEK_CUR is an argument within the function fseek. It 
  supplies the origin, which is the current position of the file pointer.
-18. Whodunit?
+18. Whodunit? Milo Banana dun it.
