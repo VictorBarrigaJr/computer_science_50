@@ -93,8 +93,8 @@ int main(int argc, char* argv[])
 
             // define filter color
             RGBTRIPLE filter;
-            filter.rgbtBlue = 0x00;
             filter.rgbtGreen = 0x00;
+            filter.rgbtBlue = 0x00;
             filter.rgbtRed = 0x00;
 
             // filters out Red and White colors
