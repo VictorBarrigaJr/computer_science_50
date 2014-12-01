@@ -1,11 +1,21 @@
-/**
- * copy.c
- *
+/*******************************************************************************
+ * whodonit.c (c) by Victor Barriga
+ * 
+ * whodonit.c is licensed under a
+ * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+ * 
+ * You should have received a copy of the license along with this
+ * work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/3.0/>.
+ * 
+ * whodonit.c 
  * Computer Science 50
- * Problem Set 5
+ * Problem Set 5 - Forensics
  *
- * Copies a BMP piece by piece, just because.
- */
+ * Usage: ./whodonit clue.bmp verdict.bmp
+ *
+ * Reveals Mr. Broddy's drawing by creating a modified copy of a BMP pixel by 
+ * pixel.
+ **/
        
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,6 +90,24 @@ int main(int argc, char* argv[])
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+
+            // define filter color
+            filter.rgbtBlue = 0x00;
+            filter.rgbtGreen = 0x00;
+            filter.rgbtRed = 0x00;
+
+            // filters out Red and White colors
+            if (triple.rgbtGreen == 0x00 && triple.rgbtBlue == 0x00 && 
+                triple.rgbtRed == 0xff)
+            {
+                triple = filter;
+            }
+
+            if (triple.rgbtGreen == 0xff && triple.rgbtGreen == 0xff &&
+                triple.rgbtRed == 0xff)
+            {
+                triple = filter;
+            }
 
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
