@@ -33,9 +33,9 @@ int main(int argc, char* argv[])
         return 1;
     }
     
-    // ensure resize factor input by uset is within range
+    // assign and ensure resize factor input by user is within range
     int factor = atoi(argv[1]);
-    if(factor < 0 || factor > 100 )
+    if(factor < 1 || factor > 100)
     {
         printf("Usage: ./resize n infile outfile\n");
         printf(" where n is a positive integer <= 100.\n");
@@ -78,53 +78,65 @@ int main(int argc, char* argv[])
         fclose(outptr);
         fclose(inptr);
         fprintf(stderr, "Unsupported file format.\n");
-        return 4;
+        return 5;
     }
+    
+    // calculates factored bfSize
+    bf.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + 
+        factor * (bf.bfSize - sizeof(BITMAPFILEHEADER) - sizeof(BITMAPINFOHEADER));
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
+
+    // scaled file info
+    bi.biWidth = factor * bi.biWidth;
+    bi.biHeight = factor * bi.biHeight;
+    bi.biSizeImage = factor * bi.biSizeImage;
 
     // write outfile's BITMAPINFOHEADER
     fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int in_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE) / factor) % 4) % 4;
+    int out_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
-    // iterate over infile's scanlines
+    // iterate over infile's scanlines by read file once and write n times
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth; j++)
+        for (int counter = 0; counter < factor; counter++)
         {
-            // temporary storage
-            RGBTRIPLE triple;
-
-            // read RGB triple from infile
-            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
-            // define filter color
-            RGBTRIPLE filter;
-            filter.rgbtGreen = 0x00;
-            filter.rgbtBlue = 0x00;
-            filter.rgbtRed = 0x00;
-            
-            if (triple.rgbtRed != 255)
+            // iterate over pixels in scanline and write n times
+            for (int j = 0; j < bi.biWidth / factor; j++)
             {
-                triple = filter;
+                // temporary storage
+                RGBTRIPLE triple;
+
+                // read RGB triple from infile
+                fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+
+                // write RGB triple to outfile
+                for (int k = 0; k < factor; k++)
+                {
+                    fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+                }
             }
-                       
-            // write RGB triple to outfile
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+        
+            // skip over padding, if any
+            fseek(inptr, in_padding, SEEK_CUR);
+
+            // then add it back (to demonstrate how)
+            for (int k = 0; k < out_padding; k++)
+            {
+                fputc(0x00, outptr);
+            }
+
+            // return the indicator back
+            fseek(inptr, - (bi.biWidth * 3 / factor + in_padding), SEEK_CUR);
         }
 
-        // skip over padding, if any
-        fseek(inptr, padding, SEEK_CUR);
-
-        // then add it back (to demonstrate how)
-        for (int k = 0; k < padding; k++)
-        {
-            fputc(0x00, outptr);
-        }
+        // reset indicator to the next line
+        fseek(inptr, bi.biWidth * 3 / factor + in_padding, SEEK_CUR);
+        
     }
 
     // close infile
