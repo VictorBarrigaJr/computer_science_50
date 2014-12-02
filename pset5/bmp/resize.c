@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     {
         printf("Usage: ./resize n infile outfile\n");
         printf(" where n is a positive integer <= 100.\n");
-        return 1;
+        return 2;
     }
 
     // remember filenames 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
     if (inptr == NULL)
     {
         printf("Could not open %s.\n", infile);
-        return 2;
+        return 3;
     }
 
     // open output file
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
     {
         fclose(inptr);
         fprintf(stderr, "Could not create %s.\n", outfile);
-        return 3;
+        return 4;
     }
 
     // read infile's BITMAPFILEHEADER
