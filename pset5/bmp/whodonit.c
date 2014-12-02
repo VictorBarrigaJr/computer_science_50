@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     // ensure proper usage
     if (argc != 3)
     {
-        printf("Usage: ./copy infile outfile\n");
+        printf("Usage: ./whodonit infile outfile\n");
         return 1;
     }
 
