@@ -29,13 +29,22 @@ int main(int argc, char* argv[])
     // ensure proper usage
     if (argc != 4)
     {
-        printf("Usage: ./copy infile outfile\n");
+        printf("Usage: ./resize n infile outfile\n");
+        return 1;
+    }
+    
+    // ensure resize factor input by uset is within range
+    int factor = atoi(argv[1]);
+    if(factor < 0 || factor > 100 )
+    {
+        printf("Usage: ./resize n infile outfile\n");
+        printf(" where n is a positive integer <= 100.\n");
         return 1;
     }
 
-    // remember filenames
-    char* infile = argv[1];
-    char* outfile = argv[2];
+    // remember filenames 
+    char* infile = argv[2];
+    char* outfile = argv[3];
 
     // open input file 
     FILE* inptr = fopen(infile, "r");
