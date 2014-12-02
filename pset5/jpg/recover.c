@@ -11,7 +11,7 @@
  * Computer Science 50
  * Problem Set 5 - Forensics
  *
- * Usage: ./recover jpeg
+ * Usage: ./recover file.jpeg
  *
  * Recovers JPEGs from a forensic image.
  */
@@ -19,8 +19,13 @@
 int main(int argc, char* argv[])
 {
     // open memory card file
-    // find beginning of jpg
-    // open a new jpg
-    // write 512 bytes unitl new jpg is found
-    // detect end of file
+        // repeat until end of card
+    // read 512 bytes into a buffer
+    // start of new jpg?
+        // yes...
+        // no...
+    // already found a jpg?
+        // no...
+        // yes...
+    // close any remaining files
 }
