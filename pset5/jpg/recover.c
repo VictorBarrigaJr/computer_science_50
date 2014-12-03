@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// define blocksize 
+// define blocksize jpg are saved in 512 blocks
 #define BLOCKSIZE 512
 
 // BYTE typedef equal to unsigned integer 8-bits in length.
@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
 
     // marker to keep searching
     bool searching = true;
+
     // repeats until end of card 
     while (searching) 
     {
@@ -71,7 +72,7 @@ int main(int argc, char* argv[])
             }
 
             // read one byte at a time
-            fread(&buffer, sizeof(BYTE), 1, fptr);            
+            fread(&buffer[i], sizeof(BYTE), 1, fptr);            
         }
 
         // check if first 4 bytes match jpg
