@@ -26,13 +26,13 @@
 #define BLOCKSIZE 512
 
 // BYTE typedef equal to unsigned integer 8-bits in length.
-typedef unit8_t BYTE;
+typedef uint8_t BYTE;
 
 int main(int argc, char* argv[])
 {
     // open memory card file to read
-    FILE* in_file = fopen("card.raw", "r");
-    if (in_file == NULL)
+    FILE* fptr = fopen("card.raw", "r"); 
+    if (fptr == NULL)
     {
         printf("Could not open file.\n");
         return 1;
@@ -56,9 +56,9 @@ int main(int argc, char* argv[])
         for (int i = 0; i < BLOCKSIZE; i++) 
         {
             // if you reach the end of file, close file
-            if (feof(in_file))
+            if (feof(fptr))
             {
-                fclose(in_file);
+                fclose(fptr);
                 // close any opened out_file
                 if (out_file != NULL)
                 {
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
             }
 
             // read one byte at a time
-            fread(&buffer, sizeof(BYTE), 1, in_file);            
+            fread(&buffer, sizeof(BYTE), 1, fptr);            
         }
 
         // check if first 4 bytes match jpg
@@ -89,17 +89,25 @@ int main(int argc, char* argv[])
             sprintf(filename, "%03d.jpg", jpg_counter);
             jpg_counter++;
 
-            // open output file
-            
-        }
+            // open output file and check if empty
+            if ((out_file = fopen(filename, "w")) == NULL)
+            {
+                printf("Could not write file.\n");
+                return 2;
+            }
 
+            // write the buffer into file
+            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, out_file);    
+        }
+        // if outfile is opened, write buffer to the outfile
+        else if (out_file != NULL)
+        {
+            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, out_file);
+        }
     }
-    // read 512 bytes into a buffer
-    // start of new jpg?
-        // yes...
-        // no...
-    // already found a jpg?
-        // no...
-        // yes...
-    // close any remaining files
+
+    // close file
+    fclose(fptr);
+
+    return 0;
 }
