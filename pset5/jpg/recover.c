@@ -31,15 +31,15 @@ typedef uint8_t BYTE;
 int main(int argc, char* argv[])
 {
     // open memory card file to read
-    FILE* fptr = fopen("card.raw", "r"); 
-    if (fptr == NULL)
+    FILE* inptr = fopen("card.raw", "r"); 
+    if (inptr == NULL)
     {
         printf("Could not open file.\n");
         return 1;
     }
     
-    // define a temp output file
-    FILE* out_file = NULL;
+    // temp output file
+    FILE* outptr = NULL;
     
     // image counter
     int jpg_counter = 0;
@@ -47,23 +47,23 @@ int main(int argc, char* argv[])
     // marker to keep searching
     bool searching = true;
 
-    // repeats until end of card 
+    // search for jpg repeats until end of file is reached 
     while (searching) 
     {
-        // create array size of BLOCKSIZE - empty buffer
+        // create a buffer size of BLOCKSIZE (512 bytes)- empty buffer
         BYTE buffer[BLOCKSIZE] = {};
         
-        // itereate over each block until you reack the end of file
+        // reads inptr into buffer until EOF
         for (int i = 0; i < BLOCKSIZE; i++) 
         {
-            // if you reach the end of file, close file
-            if (feof(fptr))
+            // if EOF, close file
+            if (feof(inptr))
             {
-                fclose(fptr);
-                // close any opened out_file
-                if (out_file != NULL)
+                fclose(inptr);
+                // close any opened outptr
+                if (outptr != NULL)
                 {
-                    fclose(out_file);
+                    fclose(outptr);
                 }
 
                 searching = false;
@@ -71,44 +71,43 @@ int main(int argc, char* argv[])
                 return 0;
             }
 
-            // read one byte at a time
-            fread(&buffer[i], sizeof(BYTE), 1, fptr);            
+            fread(&buffer[i], sizeof(BYTE), 1, inptr);            
         }
 
         // check if first 4 bytes match jpg
-        if ((buffer[0] == 0xff) && (buffer[1] == 0xd8) && (buffer[2] == 0xff) &&
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff &&
             (buffer[3] == 0xe0 || buffer[3] == 0xe1))
         {
-            // if previously opened output files exist, closes them
-            if (out_file != NULL)
+            // if previously opened outptr file exists, closes it
+            if (outptr != NULL)
             {
-                fclose(out_file);
+                fclose(outptr);
             }
 
-            // create a new jpeg file using ###.jpg format      
+            // create a new jpeg file using ###.jpg naming format      
             char filename[4];
             sprintf(filename, "%03d.jpg", jpg_counter);
             jpg_counter++;
 
-            // open output file and check if empty
-            if ((out_file = fopen(filename, "w")) == NULL)
+            // assign ###.jpg to outptr, open file to write, and check if empty
+            if ((outptr = fopen(filename, "w")) == NULL)
             {
                 printf("Could not write file.\n");
                 return 2;
             }
 
-            // write the buffer into file
-            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, out_file);    
+            // write the buffer into the file
+            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, outptr);    
         }
-        // if outfile is opened, write buffer to the outfile
-        else if (out_file != NULL)
+        // copy the continued data in the buffer
+        else if (outptr != NULL)
         {
-            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, out_file);
+            fwrite(&buffer[0], BLOCKSIZE * sizeof(BYTE), 1, outptr);
         }
     }
 
     // close file
-    fclose(fptr);
+    fclose(inptr);
 
     return 0;
 }

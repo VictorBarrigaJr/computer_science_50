@@ -89,7 +89,7 @@ file in hexadecimal is 0x42 0x4D, which is 'B' 'M' in ASCII.
  read 1 data element, the size of the BITMAPHEADER, from the file bi. In this 
  case, it is reading 1 structure. 
 15. What value does copy.c:70 assign padding if bi.Width is 3? In copy.c line:70,
- if 3 is assigned to biWidth, the padding is equal to 0.
+ if 3 is assigned to biWidth, the padding is equal to 3.
 16. What does fseek do? The function fseek sets the file position of the stream, 
  a pointer to a FILE object that identifies the stream, to the given offset, this
  is the number of bytes to offsent from source. So, it basically sets the file 
