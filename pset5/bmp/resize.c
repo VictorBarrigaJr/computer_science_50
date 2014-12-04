@@ -80,64 +80,73 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 5;
     }
+
+    // variables for original width and height
+    int inptr_Width = bi.biWidth;
+    int inptr_Height = bi.biHeight;
+   
+    // update width and height by factor
+    bi.biWidth *= factor;
+    bi.biHeight *= factor;
+       
+    // determine padding for scanlines
+    int inptr_padding =  (4 - (inptr_Width * sizeof(RGBTRIPLE)) % 4) % 4;
+    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
     
-    // calculates factored bfSize
-    bf.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + 
-        factor * (bf.bfSize - sizeof(BITMAPFILEHEADER) - sizeof(BITMAPINFOHEADER));
+    // update image size
+    bi.biSizeImage = abs(bi.biHeight) * ((bi.biWidth * sizeof (RGBTRIPLE)) + padding);
+    
+    // update file size
+    bf.bfSize = bi.biSizeImage + sizeof (BITMAPFILEHEADER) + sizeof (BITMAPINFOHEADER); 
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
-
-    // scaled file info
-    bi.biWidth = factor * bi.biWidth;
-    bi.biHeight = factor * bi.biHeight;
-    bi.biSizeImage = factor * bi.biSizeImage;
-
+    
     // write outfile's BITMAPINFOHEADER
     fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+    
+    // buffer to hold scanline
+    RGBTRIPLE *buffer = malloc(sizeof(RGBTRIPLE) * (bi.biWidth));
 
-    // determine padding for scanlines
-    int in_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE) / factor) % 4) % 4;
-    int out_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-
-    // iterate over infile's scanlines by read file once and write n times
-    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
+    // iterate over infile's scanlines
+    for (int i = 0, biHeight = abs(inptr_Height); i < biHeight; i++)
     {
-        for (int counter = 0; counter < factor; counter++)
+        int counter = 0;
+        // iterate over pixels in scanline and write n times
+        for (int j = 0; j < inptr_Width; j++)
         {
-            // iterate over pixels in scanline and write n times
-            for (int j = 0; j < bi.biWidth / factor; j++)
+            // temporary storage
+            RGBTRIPLE triple;
+            
+            // read RGB triple from infile
+            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+            
+            // write pixel to buffer n times
+            for(int k = 0; k < factor; k++)
             {
-                // temporary storage
-                RGBTRIPLE triple;
-
-                // read RGB triple from infile
-                fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
-                // write RGB triple to outfile
-                for (int k = 0; k < factor; k++)
-                {
-                    fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-                }
+                *(buffer + (counter)) = triple;
+                counter++;
             }
-        
-            // skip over padding, if any
-            fseek(inptr, in_padding, SEEK_CUR);
-
-            // then add it back (to demonstrate how)
-            for (int k = 0; k < out_padding; k++)
-            {
-                fputc(0x00, outptr);
-            }
-
-            // return the indicator back
-            fseek(inptr, - (bi.biWidth * 3 / factor + in_padding), SEEK_CUR);
         }
+            
+        // skip over padding, if any
+        fseek(inptr, inptr_padding, SEEK_CUR);
 
-        // reset indicator to the next line
-        fseek(inptr, bi.biWidth * 3 / factor + in_padding, SEEK_CUR);
-        
+        // write RGB triple to outfile
+        for(int l = 0; l < factor; l++)
+           {
+               fwrite((buffer), sizeof(RGBTRIPLE), bi.biWidth, outptr);
+
+               // write padding to outfile
+               for (int m = 0; m < padding; m++)
+               {
+                   fputc(0x00, outptr);
+               }
+           }        
     }
+
+    // free buffer
+    free(buffer);
 
     // close infile
     fclose(inptr);
