@@ -1,5 +1,8 @@
-0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis? 
+         It is the longest word in the English language, and it refers to a lung
+         disease that is also known as silicosis.
 1.  According to its man page, what does getrusage do?
+         
 2.  Per the same man page, how many members are in a variable of type struct 
     rusage?
 3.  Why do you think we pass before and after by reference (instead of by value)
