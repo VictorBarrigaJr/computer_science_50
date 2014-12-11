@@ -10,9 +10,13 @@
          The rusage struct stores 16 members.
 3.  Why do you think we pass before and after by reference (instead of by value)
     to calculate, even though we're not changing their contents?
+         The values are passed by reference, because we need to know the actual
+         value "before" and "after" the program has run instead of copies, as 
+         those copies may have different values, due to creating a copy.
 4.  Explain as precisely as possible, in a paragraph or more, how main goes 
     about reading words from a file. In oter words, convince us that you indeed
     understand how that frunction's for loop works.
+         The main() function reads words from a file by:  
 5.  Why do yo think we used fgetc to read each word's characters one at a time
     rather than use fscanf with a format string like "%s" to read whole words at
     a time? Put another way, what problems might arise by relying on fscanf
