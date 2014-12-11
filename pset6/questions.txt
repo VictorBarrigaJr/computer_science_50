@@ -33,7 +33,12 @@
     rather than use fscanf with a format string like "%s" to read whole words at
     a time? Put another way, what problems might arise by relying on fscanf
     alone?
+         The problems with fscanf are: you have to allocate memory for a string 
+         prior to reading it from the file. The strings may also contain other
+         non-alphanumeric chars, because you cannot skip them. The program would
+         be less flexible. 
 6.  Why do you think we declared the parameters for check and load as const?
+         They are declared as const, so that they cannot be modified. 
 7.  What data structure(s) did you use to implement your spell-checker? Be sure
     not to leave your answer at just "hash table," "trie," or the like. Expound
     on what's inside each of your "nodes."
