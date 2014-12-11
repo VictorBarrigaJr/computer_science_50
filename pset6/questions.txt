@@ -2,9 +2,12 @@
          It is the longest word in the English language, and it refers to a lung
          disease that is also known as silicosis.
 1.  According to its man page, what does getrusage do?
-         
+         According to the man page description for getrusage() returns 
+         information on resource usage statistics used by the current process, 
+         and or all of the terminated child processes.
 2.  Per the same man page, how many members are in a variable of type struct 
     rusage?
+         The rusage struct stores 16 members.
 3.  Why do you think we pass before and after by reference (instead of by value)
     to calculate, even though we're not changing their contents?
 4.  Explain as precisely as possible, in a paragraph or more, how main goes 
