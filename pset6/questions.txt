@@ -16,7 +16,19 @@
 4.  Explain as precisely as possible, in a paragraph or more, how main goes 
     about reading words from a file. In oter words, convince us that you indeed
     understand how that frunction's for loop works.
-         The main() function reads words from a file by:  
+         The main() function reads words from a file by: First, it loads the 
+         requeted dictionary file by using the load(dictionary) function, checks
+         if it loaded. Second, if loads the text file supplied at the command 
+         line and assigns the it to the file pointer *fp, checks if it opened. 
+         Third, a for-loop is used to cycle through the entire text file using 
+         a variable c = fgetc(fp) until EOF is reached. Within this for-loop, 
+         if c is alpha or apostrophe, it is apended to the variable word[], if 
+         if length of word is longer than LENGTH or if it is a digit it ignores
+         word and moves on to the next word. Fourth, if index is > 0 a word has 
+         been found, it runs getrusage to start stats, checks if the word is
+         misspelled by running check(word), it runs getrusage to end stats. It 
+         calculates the stats. prints word if it is misspelled, and then moves
+         on to the next word.    
 5.  Why do yo think we used fgetc to read each word's characters one at a time
     rather than use fscanf with a format string like "%s" to read whole words at
     a time? Put another way, what problems might arise by relying on fscanf
