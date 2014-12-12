@@ -61,5 +61,11 @@ unsigned int hash(hash_table_t *hashtable, char *str);
    pointer to a char type string */
 list_t *lookup_string(hash_table_t *hashtable, char *str);
 
+/* the function inserts a string by hashing the string and then going into the 
+   correct index in the array to insert the new string at the beginning. It 
+   accepts two arguments: 1) a pointer to a hash table. 2) a 
+   pointer to a char type string. */
+int add_string(hash_table_t *hashtable, char *str);
+
 
 #endif
