@@ -16,5 +16,18 @@
 
 #include "shared_macros.h"
 
+/***
+ * Data structures
+ **/
+
+/* stucture for singly linked list - for separate chaining */
+typedef struct _list_t_
+{
+    char *string; // data type 
+    struct _list_t_ *next; // pointer to next node 
+} list_t;
+
+
+
 
 #endif
