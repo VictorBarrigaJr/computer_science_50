@@ -51,8 +51,15 @@ typedef struct _hash_table_t_
 hash_table_t *create_hash_table(int size);
 
 /* the function runs data through a hash function and returns a hash value. It 
-   accepts two arguments: 1) pointer to a hash table. 2) a char type string */
+   accepts two arguments: 1) a pointer to a hash table. 2) a pointer to a char 
+   type string */
 unsigned int hash(hash_table_t *hashtable, char *str);
+
+/* the function does a string look up by hasing the string, going to the correct
+   index in the array, and then doing a linear search on the linked list that
+   resides there. It accepts two arguments: 1) a pointer to a hash table. 2) a 
+   pointer to a char type string */
+list_t *lookup_string(hash_table_t *hashtable, char *str);
 
 
 #endif
