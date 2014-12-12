@@ -67,5 +67,8 @@ list_t *lookup_string(hash_table_t *hashtable, char *str);
    pointer to a char type string. */
 int add_string(hash_table_t *hashtable, char *str);
 
+/* the function deletes a table by freeing up the memory used. It accepts one 
+   argument: 1) a pointer toi a hash table. */
+void free_table(hash_table_t *hashtable);
 
 #endif
