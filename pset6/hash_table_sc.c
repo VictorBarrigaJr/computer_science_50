@@ -61,7 +61,22 @@ hash_table_t *create_hash_table(int size)
    type string */
 unsigned int hash(hash_table_t *hashtable, char *str)
 {
+    unsigned int hashval;
+    // initial hash 0
+    hashval = 0;
     
+    /*for each character, we multiply old hash by 31 and add the current 
+      character (shifting a number left is equivalent to multiplying it by 2 
+      raise to the number of places shifted). We are multiplying hashval by 32 
+      and then subtracting hashval, because shifting and subtraction are much 
+      more efficient operations than multiplication. faster! */
+    for (; *str != '\0'; str++) 
+    {
+        hashval = *str +(hashval << 5) - hashval;
+    }
+    
+    // returns the hash value mod the hashtable size so it will fit within range
+    return hashval % hashtable->size;
 }
 
 /* the function does a string look up by hasing the string, going to the correct
