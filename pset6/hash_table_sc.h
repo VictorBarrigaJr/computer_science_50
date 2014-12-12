@@ -29,10 +29,18 @@
  **/
 
 /* stucture for singly linked list - for separate chaining */
-typedef struct _list_t_ list_t;
+typedef struct _list_t_
+{
+    char *string; // data type 
+    struct _list_t_ *next; // pointer to next node 
+} list_t;
 
 /* structure for hash table  - using dynamic array*/
-typedef struct _hash_table_t_ hash_table_t; 
+typedef struct _hash_table_t_
+{
+    int size; // size of the table
+    list_t **table; // the table elements
+} hash_table_t; 
 
 /***
  * Functions
@@ -62,5 +70,4 @@ int add_string(hash_table_t *hashtable, char *str);
 /* the function deletes a table by freeing up the memory used. It accepts one 
    argument: 1) a pointer toi a hash table. */
 void free_table(hash_table_t *hashtable);
-
 #endif
