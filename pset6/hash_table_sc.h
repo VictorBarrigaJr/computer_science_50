@@ -46,11 +46,13 @@ typedef struct _hash_table_t_
  * Functions
  **/
 
-/* the function creates a hash table. It accepts one argument: 1) an int to 
-   create the size*/
+/* the function returns a hash table. It accepts one argument: 1) an int to 
+   create the size */
 hash_table_t *create_hash_table(int size);
 
-
+/* the function runs data through a hash function and returns a hash value. It 
+   accepts two arguments: 1) pointer to a hash table. 2) a char type string */
+unsigned int hash(hash_table_t *hashtable, char *str);
 
 
 #endif
