@@ -27,7 +27,11 @@ typedef struct _list_t_
     struct _list_t_ *next; // pointer to next node 
 } list_t;
 
-
-
+/* structure for hash table */
+typedef struct _hash_table_t_
+{
+    int size; // size of the table
+    list_t **table; // the table elements
+} hash_table_t; 
 
 #endif
