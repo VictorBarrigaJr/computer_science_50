@@ -103,6 +103,7 @@ list_t *lookup_string(hash_table_t *hashtable, char *str)
     return NULL;
 }
 
+
 /* the function inserts a string by hashing the string and then going into the 
    correct index in the array to insert the new string at the beginning. It 
    accepts two arguments: 1) a pointer to a hash table. 2) a 
@@ -136,10 +137,33 @@ int add_string(hash_table_t *hashtable, char *str)
     return 0;
 }
 
+
 /* the function deletes a table by freeing up the memory used. It accepts one 
    argument: 1) a pointer toi a hash table. */
 void free_table(hash_table_t *hashtable)
 {
+    int i;
+    list_t *list, *temp;
 
+    if (hashtable == NULL)
+    {
+        return;
+    }
+
+    // free the memory for every item in the table, including all strings
+    for (i = 0; i < hashtable; i++) 
+    {
+        list = hashtable->table[i];
+        while (list != NULL) 
+        {
+            temp = list;
+            list = list->next;
+            free(temp->str);
+            free(temp);
+        }
+    }
+
+    // free the table
+    free(hashtable->table);
+    free(hashtable);
 }
-
