@@ -53,8 +53,8 @@ hash_table_t *create_hash_table(int size)
     new_table->size = size;
 
     return new_table;
-
 }
+
 
 /* the function runs data through a hash function and returns a hash value. It 
    accepts two arguments: 1) a pointer to a hash table. 2) a pointer to a char 
@@ -79,13 +79,28 @@ unsigned int hash(hash_table_t *hashtable, char *str)
     return hashval % hashtable->size;
 }
 
+
 /* the function does a string look up by hasing the string, going to the correct
    index in the array, and then doing a linear search on the linked list that
    resides there. It accepts two arguments: 1) a pointer to a hash table. 2) a 
    pointer to a char type string */
 list_t *lookup_string(hash_table_t *hashtable, char *str)
 {
+    list_t *list;
+    unsigned int hashval = hash(hashtable, str);
 
+    /* goes to the appropriate index based on hash value and checks if str is 
+       in the list. If it is, it returns a pointer to the list element. If it 
+       isn't it returns NULL. */
+    for (list = hashtable->table[hashval]; list != NULL; list->next) 
+    {
+        if (strcmp(str, list->str) == 0)
+        {
+            return list;
+        }
+    }
+
+    return NULL;
 }
 
 /* the function inserts a string by hashing the string and then going into the 
