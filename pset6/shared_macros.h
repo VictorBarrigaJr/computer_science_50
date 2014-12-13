@@ -17,6 +17,6 @@
 #define LENGTH 45
 
 // hash table size 
-#define HASH_TABLE_SIZE 286199
+#define HASH_TABLE_SIZE 1024
 
 #endif
