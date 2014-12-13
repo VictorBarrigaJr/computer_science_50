@@ -1,5 +1,5 @@
  /******************************************************************************
- * 
+ *
  * File:    hash_table_sc.c
  *
  * Victor Barriga
@@ -48,18 +48,21 @@ hash_table_t *create_hash_table(int size)
     // invalid size for table
     if (size < 1)
     {
+        printf("Error table size invalid.\n")
         return NULL;
     }
 
     // allocate memory for table structure
-    if ((new_table = malloc(sizeof(hash_value_t))) == NULL)
+    if ((new_table = malloc(sizeof(hash_table_t))) == NULL)
     {
+        printf("Error unable to allocate memory for table structure.\n")
         return NULL;
     }
 
     // allocate memory for table
     if ((new_table->table = malloc(sizeof(list_t *) * size)) == NULL)
     {
+        printf("Error unable to allocate memory for size of table.\n")
         return NULL;
     }
 
@@ -225,9 +228,28 @@ int delete_string(hash_table_t *hashtable, char *str)
     return 0;
 }
 
+
 /* the function counts the number ot strings stored in the hash table. It 
    accepts one argument: 1) a pointer to a hash table. */
 int count_strings(hash_table_t *hashtable);
 {
+    int i, count = 0;
+    list_t *list;
+    
+    // check to make sure hashtable exists
+    if (hashtable == NULL)
+    {
+        return -1;
+    }
 
+    // goes throudh every index and counts all the list elements
+    for (i = 0; i < hashtable->size; i++) 
+    {
+        for (list = hashtable[i]; list != NULL; list = list->next) 
+        {
+            count++;
+        }
+    }
+
+    return count;
 }
