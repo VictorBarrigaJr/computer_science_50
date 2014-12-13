@@ -55,12 +55,16 @@ list_t *lookup_string(hash_table_t *hashtable, char *str);
 
 /* the function inserts a string by hashing the string and then going into the 
    correct index in the array to insert the new string at the beginning. It 
-   accepts two arguments: 1) a pointer to a hash table. 2) a 
-   pointer to a char type string. */
+   accepts two arguments: 1) a pointer to a hash table. 2) a pointer to a char 
+   type string. */
 int add_string(hash_table_t *hashtable, char *str);
 
 /* the function deletes a table by freeing up the memory used. It accepts one 
    argument: 1) a pointer toi a hash table. */
 void free_table(hash_table_t *hashtable);
+
+/* the function removes a string from the hash table. It accepts two arguments: 
+   1) a pointer to a hash table. 2) a pointer to a char type string */
+int delete_string(hash_table_t *hashtable, char *str);
 
 #endif
