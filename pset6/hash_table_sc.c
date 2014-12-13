@@ -109,7 +109,31 @@ list_t *lookup_string(hash_table_t *hashtable, char *str)
    pointer to a char type string. */
 int add_string(hash_table_t *hashtable, char *str)
 {
+    list_t *new_list;
+    list_t *current_list;
+    unsigned int hashval = hash(hashtable, str);
 
+    // allocate memory for list
+    if ((new_list = malloc(sizeof(list_t))) == NULL)
+    {
+        return 1;
+    }
+
+    // does the item already exist?
+    current_list = lookup_string(hashtable, str);
+
+    // if item does exist do not insert again
+    if (current_list != NULL)
+    {
+        return 2;
+    }
+
+    // insert item into list
+    new_list->str = strdup(str);
+    new_list->next = hashtable->table[hashval];
+    hashtable->table[hashval] = new_list;
+
+    return 0;
 }
 
 /* the function deletes a table by freeing up the memory used. It accepts one 
