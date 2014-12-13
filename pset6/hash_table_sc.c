@@ -194,9 +194,36 @@ void free_table(hash_table_t *hashtable)
    1) a pointer to a hash table. 2) a pointer to a char type string */
 int delete_string(hash_table_t *hashtable, char *str)
 {
+    int i;
+    list_t *list, *prev;
+    unsigned int hashval = hash(str);
 
+    // find the string in the table, and keep track of the item it points to
+    for (prev = NULL, list = hashtable->table[hashval]; 
+         list != NULL && strcmp(str, list->str); 
+         prev = list, list = list->next);
+
+    // if item was not found return 1 as error
+    if (list == NULL)
+    {
+        return 1; // string does not exist in table.
+    }
+
+    // if item exists remove it from table
+    if (prev == NULL)
+    {
+        hashtable[hashval] = list->next;
+    }
+    else
+    {
+        prev->next = list->next;
+    }
+    // free the memory associated with item.
+    free(list->str);
+    free(list);
+
+    return 0;
 }
-
 
 /* the function counts the number ot strings stored in the hash table. It 
    accepts one argument: 1) a pointer to a hash table. */
