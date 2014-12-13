@@ -12,9 +12,29 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "shared_macros.h"
 #include "hash_table_sc.h"
+
+/***
+ * Data structures
+ **/
+
+/* stucture for singly linked list - for separate chaining */
+typedef struct _list_t_
+{
+    char *string; // data type 
+    struct _list_t_ *next; // pointer to next node 
+} list_t;
+
+/* structure for hash table  - using dynamic array*/
+typedef struct _hash_table_t_
+{
+    int size; // size of the table
+    list_t **table; // the table elements
+} hash_table_t; 
+
 
 /***
  * Functions
@@ -166,4 +186,21 @@ void free_table(hash_table_t *hashtable)
     // free the table
     free(hashtable->table);
     free(hashtable);
+}
+
+
+
+/* the function removes a string from the hash table. It accepts two arguments: 
+   1) a pointer to a hash table. 2) a pointer to a char type string */
+int delete_string(hash_table_t *hashtable, char *str)
+{
+
+}
+
+
+/* the function counts the number ot strings stored in the hash table. It 
+   accepts one argument: 1) a pointer to a hash table. */
+int count_strings(hash_table_t *hashtable);
+{
+
 }
