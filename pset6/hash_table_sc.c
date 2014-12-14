@@ -48,26 +48,26 @@ hash_table_t *create_hash_table(int size)
     // invalid size for table
     if (size < 1)
     {
-        printf("Error table size invalid.\n")
+        printf("Error table size invalid.\n");
         return NULL;
     }
 
     // allocate memory for table structure
     if ((new_table = malloc(sizeof(hash_table_t))) == NULL)
     {
-        printf("Error unable to allocate memory for table structure.\n")
+        printf("Error unable to allocate memory for table structure.\n");
         return NULL;
     }
 
     // allocate memory for table
     if ((new_table->table = malloc(sizeof(list_t *) * size)) == NULL)
     {
-        printf("Error unable to allocate memory for size of table.\n")
+        printf("Error unable to allocate memory for size of table.\n");
         return NULL;
     }
 
     // initialize the elements of the table
-    for (i = 0; i < size; i++) 
+    for (int i = 0; i < size; i++) 
     {
         new_table->table[i] = NULL;
     }
@@ -115,9 +115,9 @@ list_t *lookup_string(hash_table_t *hashtable, char *str)
     /* goes to the appropriate index based on hash value and checks if str is 
        in the list. If it is, it returns a pointer to the list element. If it 
        isn't it returns NULL. */
-    for (list = hashtable->table[hashval]; list != NULL; list->next) 
+    for (list = hashtable->table[hashval]; list != NULL; list = list->next) 
     {
-        if (strcmp(str, list->str) == 0)
+        if (strcmp(str, list->string) == 0)
         {
             return list;
         }
@@ -153,7 +153,8 @@ int add_string(hash_table_t *hashtable, char *str)
     }
     
     // insert item into list
-    new_list->str = strdup(str);
+    strcpy(new_list->string, str);
+    //new_list->string = strdup(str);
     new_list->next = hashtable->table[hashval];
     hashtable->table[hashval] = new_list;
 
@@ -174,14 +175,14 @@ void free_table(hash_table_t *hashtable)
     }
 
     // free the memory for every item in the table, including all strings
-    for (i = 0; i < hashtable; i++) 
+    for (i = 0; i < hashtable->size; i++) 
     {
         list = hashtable->table[i];
         while (list != NULL) 
         {
             temp = list;
             list = list->next;
-            free(temp->str);
+            free(temp->string);
             free(temp);
         }
     }
@@ -197,13 +198,13 @@ void free_table(hash_table_t *hashtable)
    1) a pointer to a hash table. 2) a pointer to a char type string */
 int delete_string(hash_table_t *hashtable, char *str)
 {
-    int i;
+    /*int i;
     list_t *list, *prev;
-    unsigned int hashval = hash(str);
+    unsigned int hashval = hash(hashtable, str);
 
     // find the string in the table, and keep track of the item it points to
     for (prev = NULL, list = hashtable->table[hashval]; 
-         list != NULL && strcmp(str, list->str); 
+         list != NULL && strcmp(str, list->string); 
          prev = list, list = list->next);
 
     // if item was not found return 1 as error
@@ -222,17 +223,18 @@ int delete_string(hash_table_t *hashtable, char *str)
         prev->next = list->next;
     }
     // free the memory associated with item.
-    free(list->str);
+    free(list->string);
     free(list);
-
+    */
     return 0;
 }
 
 
 /* the function counts the number ot strings stored in the hash table. It 
    accepts one argument: 1) a pointer to a hash table. */
-int count_strings(hash_table_t *hashtable);
+int count_strings(hash_table_t *hashtable)
 {
+    /*
     int i, count = 0;
     list_t *list;
     
@@ -250,6 +252,8 @@ int count_strings(hash_table_t *hashtable);
             count++;
         }
     }
-
+    
     return count;
+    */
+    return 0;
 }

@@ -7,11 +7,15 @@
  * Implements a dictionary's functionality.
  ***************************************************************************/
 
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 #include "dictionary.h"
-#include "hash_table_sc.c"
-#include "shared_macros.c"
+#include "hash_table_sc.h"
+//#include "shared_macros.c"
 
 /***
  * Global variables
