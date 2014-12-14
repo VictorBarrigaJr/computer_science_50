@@ -30,8 +30,33 @@ int word_count = 0;
  */
 bool check(const char* word)
 {
-    // TODO
-    return false;
+    // word to check from text
+    char *unchecked_word;
+    if ((unchecked_word = malloc(sizeof(word))) == NULL)
+    {
+        printf("Error could not allocate memory for unchecked word\n");
+        return false;
+    }
+
+    // converts word to case-insensitive
+    for (int i = 0, j = strlen(word); i < j; i++)
+    {
+        unchecked_word[i] = tolower(word[i]);
+    }
+
+    // lookup word in hashtable
+    list_t *word_found;
+    word_found = lookup_string(dict_hash_table, unchecked_word);
+    
+    // returns true if word exists in dictionary, otherwise false 
+    if (word_found != NULL)
+    {
+        return true;
+    }
+    else  
+    {
+        return false;
+    }
 }
 
 /**
@@ -51,7 +76,8 @@ bool load(const char* dictionary)
     // create hash table with NULL's
     dict_hash_table = create_hash_table(HASH_TABLE_SIZE);
     
-    // reads from the dictionary fptr , hashes and adds to hash table
+    /* reads from the dictionary fptr, assumes dictionary fptr words are all 
+       lower case, hashes and adds to hash table. */
     char dict_word_buffer[LENGTH + 1]; 
     while (fscanf(fptr, "%s\n", dict_word_buffer) != EOF) 
     {
@@ -70,8 +96,7 @@ bool load(const char* dictionary)
  */
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    return word_count;
 }
 
 /**
@@ -79,6 +104,7 @@ unsigned int size(void)
  */
 bool unload(void)
 {
-    // TODO
-    return false;
+    free_table(dict_hash_table);
+
+    return true;
 }
