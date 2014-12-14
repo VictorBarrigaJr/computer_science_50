@@ -22,18 +22,18 @@
  **/
 
 /* stucture for singly linked list - for separate chaining */
-typedef struct _list_t_
+struct _list_t_
 {
     char *string; // data type 
-    struct _list_t_ *next; // pointer to next node 
-} list_t;
+    _list_t_ *next; // pointer to next node 
+};
 
 /* structure for hash table  - using dynamic array*/
-typedef struct _hash_table_t_
+struct _hash_table_t_
 {
     int size; // size of the table
     list_t **table; // the table elements
-} hash_table_t; 
+}; 
 
 
 /***
@@ -151,7 +151,7 @@ int add_string(hash_table_t *hashtable, char *str)
     {
         return 2;
     }
-
+    
     // insert item into list
     new_list->str = strdup(str);
     new_list->next = hashtable->table[hashval];
