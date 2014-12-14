@@ -16,7 +16,7 @@ CFLAGS = -ggdb3 -O0 -Qunused-arguments -std=c99 -Wall -Werror
 EXE = speller
 
 # space-separated list of header files
-HDRS = dictionary.h shared_macros.h hash_table_sc.c
+HDRS = dictionary.h shared_macros.h hash_table_sc.h
 
 # space-separated list of libraries, if any,
 # each of which should be prefixed with -l
