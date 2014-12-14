@@ -25,7 +25,7 @@
 struct _list_t_
 {
     char *string; // data type 
-    _list_t_ *next; // pointer to next node 
+    struct _list_t_ *next; // pointer to next node 
 };
 
 /* structure for hash table  - using dynamic array*/
