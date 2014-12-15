@@ -13,10 +13,8 @@
 #include <string.h>
 #include <strings.h>
 #include <ctype.h>
-#include <math.h>
 
 #include "dictionary.h"
-
 
 /**
  * Data structure for singly linked list - for separate chaining.
@@ -35,15 +33,12 @@ sll_node *hashtable[HASH_TABLE_SIZE] = {NULL};
 // counter to track total words in dictionary
 int word_count = 0;
 
-
 /**
  * Returns a hash value to index into hash table.
  */
 int hash(char* word)
 {
-    unsigned int hashval;
-    // initial hash 0
-    hashval = 0;
+    unsigned int hashval = 0;
     
     /*for each character, we multiply old hash by 31 and add the current 
       character (shifting a number left is equivalent to multiplying it by 2 
@@ -59,12 +54,11 @@ int hash(char* word)
     return hashval % HASH_TABLE_SIZE;
 }
 
-
 /**
  * function prepends sll_node to the beginning of a linked list. function accepts
  * one argument: 1) an char word, which is the new data int for the new sll_node.
  */
-void new_entry_prepend(/*sll_node *hashtable,*/char *word)
+void new_entry_prepend(char *word)
 {
     // create new list entry
     sll_node *new = malloc(sizeof(sll_node));
@@ -92,7 +86,6 @@ void new_entry_prepend(/*sll_node *hashtable,*/char *word)
     }        
 }
 
-
 /**
  * Returns true if a sll_node in the list contains the value i and false
  * otherwise.
@@ -107,15 +100,15 @@ bool node_lookup(char *word)
     
     while (check_node != NULL)
     {
-        if (!(strcasecmp(word, check_node->word)))   // Case-insensitive comparing
+        // Case-insensitive comparing
+        if (!(strcasecmp(word, check_node->word)))
+        {
             return true;
-    
+        }    
         check_node = check_node->next;
-    }
-    
+    }    
     return false;
 }
-
 
 /**
  * Returns true if word is in dictionary else false.
@@ -133,45 +126,8 @@ bool check(const char* word)
     }
     // insert null char into copied word
     unchecked_word[word_len] = '\0';
-    /*
-    // find the correct hash index for word loop
-    int index = hash(unchecked_word);
-    
-    // returns false, word is not in dictionary
-    if (hashtable[index] == NULL)
-    {
-        // index is empty, so word not in dictionary
-        return false;
-    }
-    else
-    {
-    */
-        return node_lookup(unchecked_word);
-        /* creates temp sll_node to iterate through linked list at index location,
-           then compares word with uncheckword for match, returns true is 
-           spelled correctly, otherwise false. */
-        /*
-        sll_node *list_iterator = hashtable[index];
-        
-        // traverse dictionary while not NULL
-        while (list_iterator->next != NULL)
-        {
-            if (strcmp(unchecked_word, list_iterator->word) == 0)
-            {
-                return true;
-            }
-            list_iterator = list_iterator->next;
-        }
-       
-        if (strcmp(unchecked_word, list_iterator->word) == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-            }
-            }*/
+   
+    return node_lookup(unchecked_word);
 }
 
 /**
@@ -190,8 +146,8 @@ bool load(const char* dictionary)
     // buffer to temp hold word from dictionary
     char word_buffer[LENGTH + 2];
     
-    /* reads from dictionary fptr, assumes all words are lowercase, hashes word, 
-       and adds to appropriate hash table index linked list. */
+    /* reads from dictionary fptr, assumes all words are lowercase & data in 
+       chain will be reverse order, calls new entry prepend function*/
     while (fgets(word_buffer, LENGTH + 2, fptr))
     {
         // inserts string terminator NULL
@@ -211,21 +167,7 @@ bool load(const char* dictionary)
  * Returns number of words in dictionary if loaded else 0 if not yet loaded.
  */
 unsigned int size(void)
-{
-    /*
-    // initialize dictionary's size
-    unsigned int size = 0;
-    
-    for (int i = 0; i < HASH_TABLE_SIZE; i++)
-    {
-        if (hashtable[i] != NULL)
-        {
-            size++;
-            for(sll_node* list_iterator = hashtable[i]; list_iterator->next != NULL; list_iterator = list_iterator->next)
-                size++;
-        }
-        }
-        return size;*/    
+{      
     return word_count;
 }
 
@@ -244,7 +186,6 @@ bool unload(void)
             free(first);
             first = next;
         }
-    }
-    
+    }    
     return true;
 }
