@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <math.h>
 
@@ -23,7 +24,7 @@
 typedef struct sll_node
 {
     char word[LENGTH + 1]; // data type
-    struct sll_node *next; // pointer to next node in list
+    struct sll_node *next; // pointer to next sll_node in list
 }
 // create an initial linked list
 sll_node;
@@ -60,8 +61,8 @@ int hash(char* word)
 
 
 /**
- * function prepends node to the beginning of a linked list. function accepts
- * one argument: 1) an char word, which is the new data int for the new node.
+ * function prepends sll_node to the beginning of a linked list. function accepts
+ * one argument: 1) an char word, which is the new data int for the new sll_node.
  */
 void new_entry_prepend(/*sll_node *hashtable,*/char *word)
 {
@@ -91,7 +92,31 @@ void new_entry_prepend(/*sll_node *hashtable,*/char *word)
     }        
 }
 
-       
+
+/**
+ * Returns true if a sll_node in the list contains the value i and false
+ * otherwise.
+ */
+bool node_lookup(char *word)
+{
+    
+    // find the correct hash index for word loop
+    int index = hash(word);
+
+    sll_node *check_node = hashtable[index];
+    
+    while (check_node != NULL)
+    {
+        if (!(strcasecmp(word, check_node->word)))   // Case-insensitive comparing
+            return true;
+    
+        check_node = check_node->next;
+    }
+    
+    return false;
+}
+
+
 /**
  * Returns true if word is in dictionary else false.
  */
@@ -108,7 +133,7 @@ bool check(const char* word)
     }
     // insert null char into copied word
     unchecked_word[word_len] = '\0';
-    
+    /*
     // find the correct hash index for word loop
     int index = hash(unchecked_word);
     
@@ -120,9 +145,12 @@ bool check(const char* word)
     }
     else
     {
-        /* creates temp node to iterate through linked list at index location,
+    */
+        return node_lookup(unchecked_word);
+        /* creates temp sll_node to iterate through linked list at index location,
            then compares word with uncheckword for match, returns true is 
            spelled correctly, otherwise false. */
+        /*
         sll_node *list_iterator = hashtable[index];
         
         // traverse dictionary while not NULL
@@ -142,8 +170,8 @@ bool check(const char* word)
         else
         {
             return false;
-        }
-    }
+            }
+            }*/
 }
 
 /**
