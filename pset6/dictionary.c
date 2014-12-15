@@ -74,8 +74,7 @@ void new_entry_prepend(/*sll_node *hashtable,*/char *word)
     }
     strncpy(new->word, word, LENGTH + 1);
     new->next = NULL;
-    //new->word = word;
-    
+        
     // update ssl_node into correct index
     int index = hash(word);
 
@@ -169,42 +168,11 @@ bool load(const char* dictionary)
     {
         // inserts string terminator NULL
         word_buffer[strlen(word_buffer) - 1] = '\0';
-        /*
-        // lowercase for word
-        for (int i = 0, n = strlen(word_buffer); i < n; i++)
-            word_buffer[i] = tolower(word_buffer[i]);
-        */
-        /*
-        // copy word into temp sll_node
-        sll_node *temp = malloc(sizeof(sll_node));
-        strncpy(temp->word, word_buffer, LENGTH + 1);
-        temp->next = NULL;
-        
-        // update the sll_node into the correct place
-        int index = hash(word_buffer);
-        
-        if (hashtable[index] == NULL)
-        {
-            hashtable[index] = temp;
-        }
-        else
-        {
-            // loop through the linked list and insert it into the table
-            sll_node *list_iterator = hashtable[index];
-
-            while(list_iterator->next != NULL)
-            {
-                list_iterator = list_iterator->next;
-            }
-            
-            // assign the sll_node to the last of the linked list
-            list_iterator->next = temp;
-        }
-        */
+        // adds new word to hash table
         new_entry_prepend(word_buffer);
+        // counts word entries
         word_count++;
     }
-
     // close the fptr
     fclose(fptr);
 
