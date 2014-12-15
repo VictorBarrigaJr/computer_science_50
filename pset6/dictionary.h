@@ -16,6 +16,10 @@
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
 
+
+// define a hash table size using 3 chars 26 * 26 * 26 = 676 * 26 = 17576.
+#define HASH_TABLE_SIZE 17576
+
 /**
  * Returns true if word is in dictionary else false.
  */
