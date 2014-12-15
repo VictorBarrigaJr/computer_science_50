@@ -40,7 +40,7 @@ int hash(char* word)
 {
     unsigned int hashval = 0;
     
-    /*for each character, we multiply old hash by 31 and add the current 
+    /*for each character, we multiply old hash by 31 and add the current_node 
       character (shifting a number left is equivalent to multiplying it by 2 
       raise to the number of places shifted). We are multiplying hashval by 32 
       and then subtracting hashval, because shifting and subtraction are much 
@@ -179,12 +179,12 @@ bool unload(void)
     // loop through the hash and free each linked list
     for (int i = 0; i < HASH_TABLE_SIZE; i++)
     {
-        sll_node* first = hashtable[i];
-        while (first != NULL)
+        sll_node *current_node = hashtable[i];
+        while (current_node != NULL)
         {
-            sll_node* next = first->next;
-            free(first);
-            first = next;
+            sll_node* next_node = current_node->next;
+            free(current_node);
+            current_node = next_node;
         }
     }    
     return true;
