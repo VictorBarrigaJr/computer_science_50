@@ -42,8 +42,21 @@
 7.  What data structure(s) did you use to implement your spell-checker? Be sure
     not to leave your answer at just "hash table," "trie," or the like. Expound
     on what's inside each of your "nodes."
+        The data struture used was a hash table with separate chaining to handle
+        collisions (singly-linked-list). Inside each node, there is the data 
+        type char with an array to handle a string "word", and a pointer to 
+        another node or NULL. 
 8.  How slow was your code the first time you got it working correctly?
+        The first time it was LOAD: 0.06, CHECK: 0.02, SIZE: 0.00, UNLOAD: 0.02
+        TOTAL: 0.10. 
 9.  What kinds of changes, if any did you make to your code over the course of 
     the week in order to improve its performance?
+        I heavily modified the program, various times. The main changes in 
+        performance occured when I updated the hash function, the next main 
+        change was to prepend the load rathar than append into the linked list. 
 10. Do you feel that your code has any bottlenecks that you were not able to 
     chip away at?
+         This problem set took longest amount of time to finish. I think
+         with my current knowledge, I chiped away at all the bottlenecks I'm 
+         able to understand.  Hopefully that will change in the future.
+         
