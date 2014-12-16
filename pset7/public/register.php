@@ -11,7 +11,7 @@
         {
             apologize("Username is required.");
         }
-        else if(empty($_POST["password"])
+        else if(empty($_POST["password"]))
         {
             apologize("Password is required.");
         }
@@ -35,7 +35,8 @@
                 $_SESSION["id"] = $id;
                 redirect("index.php");
             }
-    }
+        }
+    } 
     else
     {
         // else render form
