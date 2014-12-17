@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         apologize("Quote not found, please verify symbol, and try again.");
     }
     
-    render("../templates/quote.php", ["title" => "Quote"]);
+    render("../templates/quote_info_form.php", ["title" => "Quote"]);
 }
 // render form
 else
