@@ -13,6 +13,9 @@
             <input autofocus class="form-control" name="stock" placeholder="Stock" type="text"/>
         </div>
         <div class="form-group">
+            <input autofocus class="form-control" name="units" placeholder="Units" type="int"/>
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-default">Sell</button>
         </div>
     </fieldset>
