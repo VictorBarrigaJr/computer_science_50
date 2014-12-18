@@ -25,15 +25,6 @@
             ];
         
         }
-        
-        /*
-        // look up shares
-        $stock["shares"] = $row["shares"];
-        // compute total
-        $stock["total"] = $row["shares"] * $stock["price"];
-        // save row in array
-        $portfolio[] = $stock;
-        */
     }
     
     // query user's cash
