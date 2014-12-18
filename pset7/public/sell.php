@@ -51,7 +51,7 @@
         else
         {
             // if request sells all units
-            if($_POST["units"] === $user_shares)
+            if($_POST["units"] == $user_shares)
             {            
                 // Delete the user stocks
                 $portfolio_update = query("DELETE FROM user_portfolios WHERE user_id = ? and symbol = ?", $_SESSION["id"], strtoupper($_POST["stock"]));
