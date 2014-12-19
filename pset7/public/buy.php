@@ -12,31 +12,27 @@
             apologize("Unable to complete request - please input a stock symbol, and try again.");
         }
         // validate units to sell
-        if(empty($_POST["shares"]) || !is_numeric($_POST["shares"]) || !preg_match("/^\d+$/", $_POST["shares"]))
+        if(empty($_POST["units"]) || !is_numeric($_POST["units"]) || !preg_match("/^\d+$/", $_POST["units"]))
         {
             apologize("Unable to complete request - please verify units to sell, and try again.")
         }
         
         // query stock info from Yahoo, and validate user input
-        $stock = lookup($_POST["stock"]);
-        if ($stock === false)
+        $stock_buy = lookup($_POST["stock"]);
+        $value = $stock_buy * $_POST["stock"];
+        if ($buy_stock === false)
         {
             apologize("Unable to complete request - please verify stock symbol, and try agai.") 
         }
         else
         {
-            // calculate 
-            
-            // perform query on users portfolio to verify user input matches user portfolio
-            if(!$shares = query("SELECT shares FROM user_portfolios WHERE user_id = ? AND symbol = ?", $_SESSION["id"], $_POST["symbol"]));
-            {
-                apologize("Unable to complete request - please verify stock symbol, and try again.");
-            }
-            else
-            {
-                
-            }   
+          
         }
         
+    }
+    else
+    {
+        // render form
+        render("buy_form.php",) ["title" => "Buy"];
     }
 ?>
