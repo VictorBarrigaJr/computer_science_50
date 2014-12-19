@@ -54,8 +54,7 @@
             
             // Redirect to home
             render("../templates/buy_form_info.php", ["title" => "Buy", "stock_buy" => $stock_buy, "value" => $value]);  
-        } 
-        
+        }         
     }
     else
     {
