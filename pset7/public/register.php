@@ -9,21 +9,21 @@
         // User input for the registration form, verify password & confirmation match
         if(empty($_POST["username"]))
         {
-            apologize("Username is required.");
+            apologize("You must enter a username.");
         }
         else if(empty($_POST["password"]))
         {
-            apologize("Password is required.");
+            apologize("You must enter a password.");
         }
         else if($_POST["password"] != $_POST["confirmation"])
         {
-            apologize("Password and Confirmation do not match");
+            apologize("Your password and confirmation do not match");
         }
         // perform query on user name, if match found return error, else add user to database
         else
         {
             // query users, and isert new user
-            if(query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.0000)", $_POST["username"], crypt($_ST["password"])) === false)
+            if(query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.0000)", $_POST["username"], crypt($_POST["password"])) === false)
             {
                 apologize("Username already exists.");
             }
@@ -36,7 +36,8 @@
                 redirect("index.php");
             }
         }
-    } 
+        
+    }    
     else
     {
         // else render form
