@@ -33,13 +33,7 @@
         {
              apologize("Unable to complete request - please verify the total units to sell, and try again.");        
         }
-        /*
-        // validate user owns stock
-	    if(!$shares = query("SELECT shares FROM user_portfolios WHERE user_id = ? AND symbol =?", $_SESSION["id"] , $_POST["symbol"]))
-	    {
-		    apologize("Unable to complete request - please verify stock is currently owned.");
-		}
-		*/
+       
         // query data from Yahoo, and validate user input
         $stock_sell = lookup($_POST["stock"]);
         // assigns the total sale value of sale request
@@ -55,6 +49,7 @@
             {            
                 // Delete the user stocks
                 $portfolio_update = query("DELETE FROM user_portfolios WHERE user_id = ? and symbol = ?", $_SESSION["id"], strtoupper($_POST["stock"]));
+                
                 if ($portfolio_update === false)
                 {
                     apologize("Error while selling shares.");
@@ -72,6 +67,7 @@
                     apologize("Error while selling shares.");
                 }
             }
+            
             // Update users cash
             $cash_update = query("UPDATE users SET cash = cash + ? where id = ?", $value, $_SESSION["id"]);
             if ($cash_update === false)
@@ -79,7 +75,7 @@
                apologize("Error while selling shares.");
             }
                
-            $_SESSION["cash"] += $value;
+            //$_SESSION["cash"] += $value;
             
             // Log the history
             /*$query = query("INSERT INTO history(user_id, type, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?, Now())"
