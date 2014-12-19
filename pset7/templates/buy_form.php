@@ -8,13 +8,13 @@
     </ul>
 </div>
 
-<form action="sell.php" method="post">
+<form action="buy.php" method="post">
     <fieldset>
         <div class="form-group">
             <input autofocus class="form-control" name="stock" placeholder="Stock" type="text"/>
         </div>
         <div class="form-group">
-            <input autofocus class="form-control" name="units" placeholder="Units" type="text"/>
+            <input autofocus class="form-control" name="shares" placeholder="Units" type="text"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Buy</button>
