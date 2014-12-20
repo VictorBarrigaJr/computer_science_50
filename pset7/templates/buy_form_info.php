@@ -1,4 +1,4 @@
-<?
+<?php
     // Confirmation of sale
     print("<strong>Your order has been filled.</strong>");
     print("<br>");
