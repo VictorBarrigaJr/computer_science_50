@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img alt="C$50 Finance" src="/img/logo.gif" width="50%" height="50%"/>
+                <img alt="C$50 Finance" src="/img/logo.gif" width="350" height="60"/>
             </a>
         </div>
     
@@ -29,7 +29,6 @@
 		            <li><a href="transfer.php">Transfer</a></li>
 		            <li><a href="history.php">History</a></li>
 		            <li><a href="logout.php"><strong>Log Out</strong></a></li>
-                </li>
             </ul>
         </div>           
         

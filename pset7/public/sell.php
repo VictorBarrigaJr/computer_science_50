@@ -77,7 +77,8 @@
             
             // Log the history
             $tran_date = date("Y-m-d H:i:s");
-            $new_surrogate = $_SESSION["id"] . $tran_date . $stock_sell["symbol"];           
+            $new_surrogate = $_SESSION["id"] . $tran_date . $stock_sell["symbol"];
+            //$new_cash = query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);            
             $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, symbol, shares, credit, debit, transaction_type, fill_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
                                         $new_surrogate, $_SESSION["id"], $tran_date, $stock_sell["name"], $stock_sell["symbol"], $_POST["units"], $value, 0, 'SELL', $stock_sell["price"]);
                                                     

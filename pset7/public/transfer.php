@@ -31,7 +31,8 @@
                 
                 // Log the history
                 $tran_date = date("Y-m-d H:i:s");
-                $new_surrogate = $_SESSION["id"] . $tran_date . "WITHDRAWAL";           
+                $new_surrogate = $_SESSION["id"] . $tran_date . "WITHDRAWAL"; 
+                //$new_cash = query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);           
                 $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, debit, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", 
                                         $new_surrogate, $_SESSION["id"], $tran_date, "TRANSFER", $_POST["amount"], 'WITHDRAWAL');
                 
@@ -56,7 +57,8 @@
             
             // Log the history
             $tran_date = date("Y-m-d H:i:s");
-            $new_surrogate = $_SESSION["id"] . $tran_date . "DEPOSIT";           
+            $new_surrogate = $_SESSION["id"] . $tran_date . "DEPOSIT"; 
+            //$new_cash = query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);           
             $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, credit, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", 
                                     $new_surrogate, $_SESSION["id"], $tran_date, "TRANSFER", $_POST["amount"], 'DEPOSIT');
         
