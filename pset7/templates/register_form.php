@@ -1,4 +1,7 @@
 <form action="register.php" method="post">
+    <h1 class="form-group-heading">
+        Register
+    </h1>
     <fieldset>
         <div class="form-group">
             <input autofocus class="form-control" name="username" placeholder="Username" type="text"/>

@@ -33,6 +33,14 @@
                 $rows = query("SELECT LAST_INSERT_ID() AS id");
                 $id = $rows[0]["id"];
                 $_SESSION["id"] = $id;
+                
+                
+                // Log the history
+                $tran_date = date("Y-m-d H:i:s");
+                $new_surrogate = $_SESSION["id"] . $tran_date . "DEPOSIT";           
+                $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, credit, transaction_type) VALUES (?, ?, ?, ?, ?, ?)", 
+                                        $new_surrogate, $_SESSION["id"], $tran_date, "DEPOSIT", 10000.00, 'PROMO');
+                
                 redirect("index.php");
             }
         }

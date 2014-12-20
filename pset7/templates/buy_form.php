@@ -1,14 +1,7 @@
-<div>
-    <ul class="nav nav-pills">
-        <li><a href="index.php">Portfolio</a></li>
-        <li><a href="quote.php">Quote</a></li>
-        <li><a href="sell.php">Sell</a></li>
-        <li><a href="buy.php">Buy</a></li>
-        <li><a href="logout.php"><strong>Log Out</strong></a></li>
-    </ul>
-</div>
-
 <form action="buy.php" method="post">
+    <h1 class="form-group-heading">
+        Buy Stock
+    </h1
     <fieldset>
         <div class="form-group">
             <input autofocus class="form-control" name="stock" placeholder="Stock" type="text"/>

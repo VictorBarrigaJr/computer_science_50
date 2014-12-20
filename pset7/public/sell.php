@@ -74,14 +74,13 @@
             {
                apologize("Error while selling shares.");
             }
-               
-            //$_SESSION["cash"] += $value;
             
             // Log the history
-            /*$query = query("INSERT INTO history(user_id, type, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?, Now())"
-                ,$_SESSION["id"], 0, strtoupper($_POST["code"]), $shares, $stock["price"]);
-            */
-            
+            $tran_date = date("Y-m-d H:i:s");
+            $new_surrogate = $_SESSION["id"] . $tran_date . $stock_sell["symbol"];           
+            $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, symbol, shares, credit, debit, transaction_type, fill_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+                                        $new_surrogate, $_SESSION["id"], $tran_date, $stock_sell["name"], $stock_sell["symbol"], $_POST["units"], $value, 0, 'SELL', $stock_sell["price"]);
+                                                    
             // Redirect to home
             render("../templates/sell_info_form.php", ["title" => "Sell", "stock_sell" => $stock_sell, "value" => $value]);        
         }

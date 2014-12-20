@@ -51,7 +51,11 @@
             {
                 apologize("Error while buying shares.");
             }      
-            
+            // Log the history
+            $tran_date = date("Y-m-d H:i:s");
+            $new_surrogate = $_SESSION["id"] . $tran_date . $stock_buy["symbol"];           
+            $transaction_history = query("INSERT INTO user_history (surrogate_id, user_id, transaction_date, name, symbol, shares, credit, debit, transaction_type, fill_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+                                        $new_surrogate, $_SESSION["id"], $tran_date, $stock_buy["name"], $stock_buy["symbol"], $_POST["shares"], 0, $value, 'BUY', $stock_buy["price"]);
             // Redirect to home
             render("../templates/buy_form_info.php", ["title" => "Buy", "stock_buy" => $stock_buy, "value" => $value]);  
         }         
