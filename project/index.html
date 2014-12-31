@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--
+
+index.html 
+
+Computer Science 50
+
+Problem Set: Final Project
+Project Name: Auditory (c) by Victor Barriga
+
+Framework for Auditory.
+
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Auditory a music discovery engine.">
+    <meta name="author" content="Victor Barriga">
+
+    <title>Auditory - Music Discovery Engine</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+              
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" 
+          rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" 
+          rel="stylesheet" type="text/css">
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                        data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  
+                    <span class="light">Auditory</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="hidden"><a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#search">Search</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Navigation End -->
+    
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Auditory</h1>
+                        <p class="intro-text">A free, responsive, music discovery engine.</p>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-lg">
+                                <a class="page-scroll" href="#search">Search</a>
+                            </button> 
+                        </span>
+                        <br>
+                        <br>    
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- define three templates for units -->
+        <!-- script for main artist -->
+        <script id="lastfmTemplateSearchedArtistBio" type="text/x-jsrender">
+            <div class="searched_artist_bio">
+                <div>
+                    <p>
+                        <a href="{{:url}}" rel="nofollow" target="_blank"><h2>{{:name}}</h2></a>
+                    </p>
+                <div class="little">
+                    {{:bio.content}}
+                </div>
+            </div>
+        </script>
+        
+        <script id="lastfmTemplateSearchedArtistPic" type="text/x-jsrender">
+            <div class="searched_artist_pic">
+                <a href="{{:url}}" rel="nofollow" target="_blank">
+                    <img src="{{:image[4]["#text"]}}" />                        
+            </div>  
+        </script>
+        
+        <!-- script for similar artists -->
+        <script id="lastfmTemplateSimilarArtistBio" type="text/x-jsrender">
+            <div class="similar_artist_bio_1, similar_artist_bio_2, similar_artist_bio_3, similar_artist_bio_0, similar_artist_bio_4, similar_artist_bio_5, similar_artist_bio_6, similar_artist_bio_7, similar_artist_bio_8, similar_artist_bio_9, similar_artist_bio_10, similar_artist_bio_11">
+                <div>
+                <a href="{{:url}}" rel="nofollow" target="_blank"><img src="{{:image[2]["#text"]}}" />
+                    <p>
+                        <a href="{{:url}}" rel="nofollow" target="_blank"><h4>{{:name}}</h4></a>
+                    </p>
+                </div>
+        </script>
+        <!-- end of defined templates -->
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Auditory</h2>
+                <p>Auditory is a music discovery engine that provides, free, on the
+                    spot, relevant music recommendations based on a search query.</p>
+                <p>Our mission is to help people easily learn about music they might 
+                    like.</p>
+                <p>For most recommended items, additional details are available once 
+                    the user decides to click on that particular item.  These 
+                    additional details may include a description, a video clip, and
+                    links towards helpful resources that cn help users form a better
+                    impression on their recent discovery.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="content-section text-center">
+        <div class="search-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Auditory Search</h2>                     
+                </div>
+                <form class="form-search form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-query" id="search_for"
+                               value="" placeholder="Search an artist, band..." />
+                        <span class="input-group-btn">
+                            <button type="submit" id="search_fm" class="btn btn-default">
+                                Search
+                            </button> 
+                        </span>
+                    </div>                                
+                </form>                         
+            </div>
+        </div>
+    </section>
+    
+    <!-- Search Results-->
+    <section id="search_results" class="container content-search-section text-center">
+        <div class="container">
+
+            <!-- Search Results Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Auditory Search
+                        <small>Results</small>
+                    </h1>
+                </div>
+            </div>
+            
+            <!-- Main artist Row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="searched_artist_pic"></div>
+                </div>
+
+                <div class="col-md-6">
+                    <div id="searched_artist_bio"></div>
+                </div>
+            </div>
+            
+            <!-- Similar Artists Row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="tiny">Artists are similar to one another according to 
+                        <a href="http://www.last.fm/api">last.fm</a>.
+                    </p>
+                    <h3 class="page-header">Similar Artists</h3>
+                </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_0"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_1"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_2"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_3"></div> <!-- name info -->
+                    </div>
+            </div>            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header"> </h4>
+                </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_4"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_5"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_6"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_7"></div> <!-- name info -->
+                    </div>
+            </div>            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header"> </h4>
+                </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_8"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_9"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_10"></div> <!-- name info -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div id="similar_artist_bio_11"></div> <!-- name info -->
+                    </div>
+            </div>
+            <p class="tiny">Data from 
+                <a href="http://www.last.fm/api/show/track.getSimilar">last.fm</a>. 
+                Some artists include additional links for effect. Includes only the 
+                first twelve artists in the network.</p>
+        </div>
+    
+    </section>
+    <!-- end of search results -->
+    
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="contact-section">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Contact Auditory</h2>
+                    <p>Feel free to email us to provide some feedback, give us suggestions, 
+                        or to just say hello!</p>
+                    <p><a href="mailto: victorbarriga@live.com">contact@auditory.com</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com" class="btn btn-default btn-lg">
+                                <i class="fa fa-twitter fa-fw"></i> 
+                                <span class="network-name">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://facebook.com" class="btn btn-default btn-lg">
+                                <i class="fa fa-facebook fa-fw"></i> 
+                                <span class="network-name">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com" class="btn btn-default btn-lg">
+                                <i class="fa fa-google-plus fa-fw"></i> 
+                                <span class="network-name">Google+</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; Auditory.com 2014</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    
+    <!-- loads libraries to use lastfm -->
+    <script src="js/jsrender.js"></script>
+    <script src="js/json2.js"></script>
+    <script src="js/lastfm.api.md5.js"></script>
+    <script src="js/lastfm.api.js"></script>
+    <script src="js/lastfm.api.cache.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
